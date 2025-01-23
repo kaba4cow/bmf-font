@@ -54,8 +54,8 @@ public class BMFParser {
 						target.setStretchH(map.get("stretchH").asInt());
 						target.setSmooth(map.get("smooth").asInt() != 0);
 						target.setAntiAliased(map.get("aa").asInt() != 0);
-						target.setPadding(map.get("padding").asIntArray(","));
-						target.setSpacing(map.get("spacing").asIntArray(","));
+						target.setPadding(map.get("padding").asArrayView().asIntArray(","));
+						target.setSpacing(map.get("spacing").asArrayView().asIntArray(","));
 						break;
 					case "common":
 						target.setLineHeight(map.get("lineHeight").asInt());
@@ -134,7 +134,7 @@ public class BMFParser {
 			return new LinkedHashMap<>();
 		String[] values = line.trim().split(" ", 2);
 		Map<String, StringView> map = new LinkedHashMap<>();
-		map.put("header", StringView.view(values[0]));
+		map.put("header", new StringView(values[0]));
 		String pairs = values[1];
 		StringBuilder currentKey = new StringBuilder();
 		StringBuilder currentValue = new StringBuilder();
@@ -145,7 +145,7 @@ public class BMFParser {
 				quotes = !quotes;
 			else if (c == ' ' && !quotes) {
 				if (readingValue) {
-					map.put(currentKey.toString(), StringView.view(currentValue.toString()));
+					map.put(currentKey.toString(), new StringView(currentValue.toString()));
 					currentKey.setLength(0);
 					currentValue.setLength(0);
 					readingValue = false;
@@ -157,7 +157,7 @@ public class BMFParser {
 			else
 				currentValue.append(c);
 		if (currentKey.length() > 0 && currentValue.length() > 0)
-			map.put(currentKey.toString(), StringView.view(currentValue.toString()));
+			map.put(currentKey.toString(), new StringView(currentValue.toString()));
 		return map;
 	}
 
