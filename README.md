@@ -19,7 +19,7 @@ A Java library for reading and manipulating **BMFont** files. This library provi
 ```java
 // Parse a BMFont file
 try {
-    BMFFont font = BMFParser.parse(new FileInputStream("path/to/your/font.fnt"), null);
+    BmfFont font = BmfParser.parse(new FileInputStream("path/to/your/font.fnt"), null);
     
     // Access font properties
     System.out.println("Font face: " + font.getFace());
@@ -27,14 +27,15 @@ try {
     System.out.println("Line height: " + font.getLineHeight());
     
     // Get character information
-    BMFCharacter character = font.getCharacter(65); // 'A'
+    BmfCharacter character = font.getCharacter(65); // 'A'
     if (character != null) {
-        System.out.println("Character A width: " + character.getWidth());
-        System.out.println("Character A height: " + character.getHeight());
+        BmfDimensions textureDimensions = character.getTextureDimensions();
+        System.out.println("Character A width: " + textureDimensions.getWidth());
+        System.out.println("Character A height: " + textureDimensions.getHeight());
     }
     
     // Check kerning between two characters
-    Optional<BMFKerning> kerning = font.getKerning(65, 86); // A and V
+    Optional<BmfKerning> kerning = font.getKerning(65, 86); // A and V
     kerning.ifPresent(k -> System.out.println("Kerning amount: " + k.getAmount()));
     
 } catch (IOException e) {
@@ -46,7 +47,7 @@ try {
 
 ```java
 // Create font
-BMFFont font = new BMFFont()
+BmfFont font = new BmfFont()
     .setFace("Arial")
     .setSize(32)
     .setLineHeight(36)
@@ -54,32 +55,35 @@ BMFFont font = new BMFFont()
     .setSmooth(true);
 
 // Add a character
-BMFCharacter character = new BMFCharacter(65) // 'A'
+BmfCharacter character = new BmfCharacter(65) // 'A'
+    .setAdvance(26);
+character.getTextureCoordinates()
     .setX(0)
-    .setY(0)
+    .setY(0);
+character.getTextureDimensions()
     .setWidth(24)
-    .setHeight(32)
+    .setHeight(32);
+character.getOffsetCoordinates()
     .setOffsetX(0)
-    .setOffsetY(0)
-    .setAdvanceX(26);
+    .setOffsetY(0);
 font.addCharacter(character);
 
 // Add kerning
-BMFKerning kerning = new BMFKerning(65, 86) // A to V
+BmfKerning kerning = new BmfKerning(65, 86) // A to V
     .setAmount(-2);
 font.addKerning(kerning);
 ```
 
 ## Key Classes
 
-### BMFFont
+### BmfFont
 The main class representing a bitmap font:
 - Font properties (face, size, line height, etc.)
 - Character and kerning management
 - Texture page handling
 - Builder-style setters for easy configuration
 
-### BMFCharacter
+### BmfCharacter
 Represents a single character in the font:
 - Position in texture (x, y)
 - Dimensions (width, height)
@@ -87,12 +91,12 @@ Represents a single character in the font:
 - Advance value
 - Page and channel information
 
-### BMFKerning
+### BmfKerning
 Manages spacing adjustments between character pairs:
 - First and second character codes
 - Kerning amount
 
-### BMFParser
+### BmfParser
 Utility class for parsing **BMFont** files:
 - Multiple input source support (`Reader`, `InputStream`, `String`)
 - Optional target font object for reuse
