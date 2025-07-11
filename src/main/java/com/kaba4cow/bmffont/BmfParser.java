@@ -69,15 +69,23 @@ public class BmfParser {
 						break;
 					case "char":
 						BmfCharacter character = new BmfCharacter(map.get("id").asInt());
-						character.setX(map.get("x").asInt());
-						character.setY(map.get("y").asInt());
-						character.setWidth(map.get("width").asInt());
-						character.setHeight(map.get("height").asInt());
-						character.setOffsetX(map.get("xoffset").asInt());
-						character.setOffsetY(map.get("yoffset").asInt());
-						character.setAdvanceX(map.get("xadvance").asInt());
+
+						BmfCoordinates textureCoordinates = character.getTextureCoordinates();
+						textureCoordinates.setX(map.get("x").asInt());
+						textureCoordinates.setY(map.get("y").asInt());
+
+						BmfDimensions textureDimensions = character.getTextureDimensions();
+						textureDimensions.setWidth(map.get("width").asInt());
+						textureDimensions.setHeight(map.get("height").asInt());
+
+						BmfCoordinates offsetCoordinates = character.getOffsetCoordinates();
+						offsetCoordinates.setX(map.get("xoffset").asInt());
+						offsetCoordinates.setY(map.get("yoffset").asInt());
+
+						character.setAdvance(map.get("xadvance").asInt());
 						character.setPage(map.get("page").asInt());
 						character.setChannel(map.get("chnl").asInt());
+
 						target.addCharacter(character);
 						break;
 					case "kerning":

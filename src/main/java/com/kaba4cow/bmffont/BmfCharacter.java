@@ -8,16 +8,16 @@ public class BmfCharacter {
 
 	private final int id;
 
-	private int x;
-	private int y;
-	private int width;
-	private int height;
+	private final BmfCoordinates textureCoordinates;
 
-	private int offsetX;
-	private int offsetY;
-	private int advanceX;
+	private final BmfDimensions textureDimensions;
+
+	private final BmfCoordinates offsetCoordinates;
+
+	private int advance;
 
 	private int page;
+
 	private int channel;
 
 	/**
@@ -27,13 +27,10 @@ public class BmfCharacter {
 	 */
 	public BmfCharacter(int id) {
 		this.id = id;
-		this.x = 0;
-		this.y = 0;
-		this.width = 0;
-		this.height = 0;
-		this.offsetX = 0;
-		this.offsetY = 0;
-		this.advanceX = 0;
+		this.textureCoordinates = new BmfCoordinates();
+		this.textureDimensions = new BmfDimensions();
+		this.offsetCoordinates = new BmfCoordinates();
+		this.advance = 0;
 		this.page = 0;
 		this.channel = 0;
 	}
@@ -48,149 +45,51 @@ public class BmfCharacter {
 	}
 
 	/**
-	 * Returns the X coordinate of this character in the texture.
-	 *
-	 * @return the X coordinate
+	 * Returns the coordinates of this character in the texture.
+	 * 
+	 * @return the texture coordinates
 	 */
-	public int getX() {
-		return x;
+	public BmfCoordinates getTextureCoordinates() {
+		return textureCoordinates;
 	}
 
 	/**
-	 * Sets the X coordinate of this character in the texture.
+	 * Returns the dimensions of this character in the texture.
+	 * 
+	 * @return the texture dimensions
+	 */
+
+	public BmfDimensions getTextureDimensions() {
+		return textureDimensions;
+	}
+
+	/**
+	 * Returns the offset coordinates for rendering this character.
+	 * 
+	 * @return the offset coordinates
+	 */
+	public BmfCoordinates getOffsetCoordinates() {
+		return offsetCoordinates;
+	}
+
+	/**
+	 * Returns the advance value for this character.
 	 *
-	 * @param x the X coordinate to set
+	 * @return the advance value
+	 */
+	public int getAdvance() {
+		return advance;
+	}
+
+	/**
+	 * Sets the advance value for this character.
+	 *
+	 * @param advance the advance value to set
 	 * 
 	 * @return a reference to this object
 	 */
-	public BmfCharacter setX(int x) {
-		this.x = x;
-		return this;
-	}
-
-	/**
-	 * Returns the Y coordinate of this character in the texture.
-	 *
-	 * @return the Y coordinate
-	 */
-	public int getY() {
-		return y;
-	}
-
-	/**
-	 * Sets the Y coordinate of this character in the texture.
-	 *
-	 * @param y the Y coordinate to set
-	 * 
-	 * @return a reference to this object
-	 */
-	public BmfCharacter setY(int y) {
-		this.y = y;
-		return this;
-	}
-
-	/**
-	 * Returns the width of this character in the texture.
-	 *
-	 * @return the width
-	 */
-	public int getWidth() {
-		return width;
-	}
-
-	/**
-	 * Sets the width of this character in the texture.
-	 *
-	 * @param width the width to set
-	 * 
-	 * @return a reference to this object
-	 */
-	public BmfCharacter setWidth(int width) {
-		this.width = width;
-		return this;
-	}
-
-	/**
-	 * Returns the height of this character in the texture.
-	 *
-	 * @return the height
-	 */
-	public int getHeight() {
-		return height;
-	}
-
-	/**
-	 * Sets the height of this character in the texture.
-	 *
-	 * @param height the height to set
-	 * 
-	 * @return a reference to this object
-	 */
-	public BmfCharacter setHeight(int height) {
-		this.height = height;
-		return this;
-	}
-
-	/**
-	 * Returns the X offset for rendering this character.
-	 *
-	 * @return the X offset
-	 */
-	public int getOffsetX() {
-		return offsetX;
-	}
-
-	/**
-	 * Sets the X offset for rendering this character.
-	 *
-	 * @param offsetX the X offset to set
-	 * 
-	 * @return a reference to this object
-	 */
-	public BmfCharacter setOffsetX(int offsetX) {
-		this.offsetX = offsetX;
-		return this;
-	}
-
-	/**
-	 * Returns the Y offset for rendering this character.
-	 *
-	 * @return the Y offset
-	 */
-	public int getOffsetY() {
-		return offsetY;
-	}
-
-	/**
-	 * Sets the Y offset for rendering this character.
-	 *
-	 * @param offsetY the Y offset to set
-	 * 
-	 * @return a reference to this object
-	 */
-	public BmfCharacter setOffsetY(int offsetY) {
-		this.offsetY = offsetY;
-		return this;
-	}
-
-	/**
-	 * Returns the horizontal advance value for this character.
-	 *
-	 * @return the horizontal advance value
-	 */
-	public int getAdvanceX() {
-		return advanceX;
-	}
-
-	/**
-	 * Sets the horizontal advance value for this character.
-	 *
-	 * @param advanceX the horizontal advance value to set
-	 * 
-	 * @return a reference to this object
-	 */
-	public BmfCharacter setAdvanceX(int advanceX) {
-		this.advanceX = advanceX;
+	public BmfCharacter setAdvance(int advance) {
+		this.advance = advance;
 		return this;
 	}
 
@@ -239,8 +138,8 @@ public class BmfCharacter {
 	@Override
 	public String toString() {
 		return String.format(
-				"BmfCharacter [id=%s, x=%s, y=%s, width=%s, height=%s, offsetX=%s, offsetY=%s, advanceX=%s, page=%s, channel=%s]",
-				id, x, y, width, height, offsetX, offsetY, advanceX, page, channel);
+				"BmfCharacter [id=%s, textureCoordinates=%s, textureDimensions=%s, offsetCoordinates=%s, advance=%s, page=%s, channel=%s]",
+				id, textureCoordinates, textureDimensions, offsetCoordinates, advance, page, channel);
 	}
 
 }

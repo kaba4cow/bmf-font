@@ -18,7 +18,9 @@ import java.util.TreeMap;
 public class BmfFont {
 
 	private final Map<Integer, BmfCharacter> characters;
+
 	private final Set<BmfKerning> kernings;
+
 	private final List<String> pages;
 
 	private String face;
