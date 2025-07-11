@@ -27,9 +27,9 @@ public class BmfFont {
 	private String charset;
 
 	private int size;
-	private int scaleW;
-	private int scaleH;
 	private int stretchH;
+
+	private final BmfDimensions scaleDimensions;
 
 	private int lineHeight;
 	private int base;
@@ -54,9 +54,8 @@ public class BmfFont {
 		this.face = "";
 		this.charset = "";
 		this.size = 0;
-		this.scaleW = 0;
-		this.scaleH = 0;
 		this.stretchH = 0;
+		this.scaleDimensions = new BmfDimensions();
 		this.lineHeight = 0;
 		this.base = 0;
 		this.padding = new int[4];
@@ -338,54 +337,21 @@ public class BmfFont {
 	}
 
 	/**
-	 * Returns the width of the texture.
-	 *
-	 * @return the texture width
-	 */
-	public int getScaleW() {
-		return scaleW;
-	}
-
-	/**
-	 * Sets the width of the texture.
-	 *
-	 * @param scaleW the texture width to set
-	 * 
-	 * @return a reference to this object
-	 */
-	public BmfFont setScaleW(int scaleW) {
-		this.scaleW = scaleW;
-		return this;
-	}
-
-	/**
-	 * Returns the height of the texture.
-	 *
-	 * @return the texture height
-	 */
-	public int getScaleH() {
-		return scaleH;
-	}
-
-	/**
-	 * Sets the height of the texture.
-	 *
-	 * @param scaleH the texture height to set
-	 * 
-	 * @return a reference to this object
-	 */
-	public BmfFont setScaleH(int scaleH) {
-		this.scaleH = scaleH;
-		return this;
-	}
-
-	/**
 	 * Returns the font stretch height percentage.
 	 *
 	 * @return the stretch height
 	 */
 	public int getStretchH() {
 		return stretchH;
+	}
+
+	/**
+	 * Returns dimensions of the texture.
+	 * 
+	 * @return the texture dimensions
+	 */
+	public BmfDimensions getScaleDimensions() {
+		return scaleDimensions;
 	}
 
 	/**
@@ -613,8 +579,8 @@ public class BmfFont {
 	@Override
 	public String toString() {
 		return String.format(
-				"BMFFont [characters=%s, kernings=%s, pages=%s, face=%s, charset=%s, size=%s, scaleW=%s, scaleH=%s, stretchH=%s, lineHeight=%s, base=%s, padding=%s, spacing=%s, bold=%s, italic=%s, unicode=%s, smooth=%s, antiAliased=%s, packed=%s]",
-				characters.size(), kernings.size(), pages, face, charset, size, scaleW, scaleH, stretchH, lineHeight, base,
+				"BmfFont [characters=%s, kernings=%s, pages=%s, face=%s, charset=%s, size=%s, stretchH=%s, scaleDimensions=%s, lineHeight=%s, base=%s, padding=%s, spacing=%s, bold=%s, italic=%s, unicode=%s, smooth=%s, antiAliased=%s, packed=%s]",
+				characters.size(), kernings.size(), pages, face, charset, size, stretchH, scaleDimensions, lineHeight, base,
 				Arrays.toString(padding), Arrays.toString(spacing), bold, italic, unicode, smooth, antiAliased, packed);
 	}
 

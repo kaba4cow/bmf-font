@@ -60,8 +60,9 @@ public class BmfParser {
 					case "common":
 						target.setLineHeight(map.get("lineHeight").asInt());
 						target.setBase(map.get("base").asInt());
-						target.setScaleW(map.get("scaleW").asInt());
-						target.setScaleH(map.get("scaleH").asInt());
+						BmfDimensions scaleDimensions = target.getScaleDimensions();
+						scaleDimensions.setWidth(map.get("scaleW").asInt());
+						scaleDimensions.setHeight(map.get("scaleH").asInt());
 						target.setPacked(map.get("packed").asInt() != 0);
 						break;
 					case "page":
