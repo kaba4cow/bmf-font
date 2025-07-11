@@ -190,7 +190,7 @@ public class BmfFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BmfFont reoveKerning(BmfKerning kerning) {
+	public BmfFont removeKerning(BmfKerning kerning) {
 		kernings.remove(kerning);
 		return this;
 	}
