@@ -14,29 +14,29 @@ import com.kaba4cow.stringview.StringView;
 
 /**
  * A utility class for reading BMFont data from {@link Reader}s, {@link InputStream}s or {@link String}s and converting it to
- * {@link BMFFont} objects.
+ * {@link BmfFont} objects.
  */
-public class BMFParser {
+public class BmfParser {
 
-	private BMFParser() {}
+	private BmfParser() {}
 
 	/**
-	 * Reads the BMFont data from the specified {@link Reader} and converts its contents to an {@link BMFFont} object. If the
-	 * {@code target} is not {@code null} its contents are cleared using {@link BMFFont#clearCharacters()},
-	 * {@link BMFFont#clearKernings()} and {@link BMFFont#clearPages()}
+	 * Reads the BMFont data from the specified {@link Reader} and converts its contents to an {@link BmfFont} object. If the
+	 * {@code target} is not {@code null} its contents are cleared using {@link BmfFont#clearCharacters()},
+	 * {@link BmfFont#clearKernings()} and {@link BmfFont#clearPages()}
 	 * 
 	 * @param source the {@link Reader} to read the BMFont data from
-	 * @param target the {@link BMFFont} to convert the BMFont data to, or {@code null}
+	 * @param target the {@link BmfFont} to convert the BMFont data to, or {@code null}
 	 * 
-	 * @return the {@link BMFFont} containing the data, either the passed one or a newly created one if {@code target} is
+	 * @return the {@link BmfFont} containing the data, either the passed one or a newly created one if {@code target} is
 	 *             {@code null}
 	 * 
 	 * @throws IOException if an I/O error occurs
 	 */
-	public static BMFFont parse(Reader source, BMFFont target) throws IOException {
+	public static BmfFont parse(Reader source, BmfFont target) throws IOException {
 		Objects.requireNonNull(source, "Source Reader must not be null");
 		if (Objects.isNull(target))
-			target = new BMFFont();
+			target = new BmfFont();
 		else
 			target.clearCharacters().clearKernings().clearPages();
 		try (BufferedReader reader = new BufferedReader(source)) {
@@ -68,7 +68,7 @@ public class BMFParser {
 						target.addPage(map.get("id").asInt(), map.get("file").asString());
 						break;
 					case "char":
-						BMFCharacter character = new BMFCharacter(map.get("id").asInt());
+						BmfCharacter character = new BmfCharacter(map.get("id").asInt());
 						character.setX(map.get("x").asInt());
 						character.setY(map.get("y").asInt());
 						character.setWidth(map.get("width").asInt());
@@ -81,7 +81,7 @@ public class BMFParser {
 						target.addCharacter(character);
 						break;
 					case "kerning":
-						BMFKerning kerning = new BMFKerning(map.get("first").asInt(), map.get("second").asInt());
+						BmfKerning kerning = new BmfKerning(map.get("first").asInt(), map.get("second").asInt());
 						kerning.setAmount(map.get("amount").asInt());
 						target.addKerning(kerning);
 						break;
@@ -94,37 +94,37 @@ public class BMFParser {
 	}
 
 	/**
-	 * Reads the BMFont data from the specified {@link InputStream} and converts its contents to an {@link BMFFont} object. If
-	 * the {@code target} is not {@code null} its contents are cleared using {@link BMFFont#clearCharacters()},
-	 * {@link BMFFont#clearKernings()} and {@link BMFFont#clearPages()}
+	 * Reads the BMFont data from the specified {@link InputStream} and converts its contents to an {@link BmfFont} object. If
+	 * the {@code target} is not {@code null} its contents are cleared using {@link BmfFont#clearCharacters()},
+	 * {@link BmfFont#clearKernings()} and {@link BmfFont#clearPages()}
 	 * 
 	 * @param source the {@link InputStream} to read the BMFont data from
-	 * @param target the {@link BMFFont} to convert the BMFont data to, or {@code null}
+	 * @param target the {@link BmfFont} to convert the BMFont data to, or {@code null}
 	 * 
-	 * @return the {@link BMFFont} containing the data, either the passed one or a newly created one if {@code target} is
+	 * @return the {@link BmfFont} containing the data, either the passed one or a newly created one if {@code target} is
 	 *             {@code null}
 	 * 
 	 * @throws IOException if an I/O error occurs
 	 */
-	public static BMFFont parse(InputStream source, BMFFont target) throws IOException {
+	public static BmfFont parse(InputStream source, BmfFont target) throws IOException {
 		Objects.requireNonNull(source, "Source InputStream must not be null");
 		return parse(new InputStreamReader(source), target);
 	}
 
 	/**
-	 * Reads the BMFont data from the specified {@link String} and converts its contents to an {@link BMFFont} object. If the
-	 * {@code target} is not {@code null} its contents are cleared using {@link BMFFont#clearCharacters()},
-	 * {@link BMFFont#clearKernings()} and {@link BMFFont#clearPages()}
+	 * Reads the BMFont data from the specified {@link String} and converts its contents to an {@link BmfFont} object. If the
+	 * {@code target} is not {@code null} its contents are cleared using {@link BmfFont#clearCharacters()},
+	 * {@link BmfFont#clearKernings()} and {@link BmfFont#clearPages()}
 	 * 
 	 * @param source the {@link String} to read the BMFont data from
-	 * @param target the {@link BMFFont} to convert the BMFont data to, or {@code null}
+	 * @param target the {@link BmfFont} to convert the BMFont data to, or {@code null}
 	 * 
-	 * @return the {@link BMFFont} containing the data, either the passed one or a newly created one if {@code target} is
+	 * @return the {@link BmfFont} containing the data, either the passed one or a newly created one if {@code target} is
 	 *             {@code null}
 	 * 
 	 * @throws IOException if an I/O error occurs
 	 */
-	public static BMFFont parse(String source, BMFFont target) throws IOException {
+	public static BmfFont parse(String source, BmfFont target) throws IOException {
 		Objects.requireNonNull(source, "Source String must not be null");
 		return parse(new StringReader(source), target);
 	}

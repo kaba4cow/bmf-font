@@ -15,10 +15,10 @@ import java.util.TreeMap;
  * Represents a bitmap font with all its properties and character data. This class holds information about the font's
  * appearance, metrics, and character mappings.
  */
-public class BMFFont {
+public class BmfFont {
 
-	private final Map<Integer, BMFCharacter> characters;
-	private final Set<BMFKerning> kernings;
+	private final Map<Integer, BmfCharacter> characters;
+	private final Set<BmfKerning> kernings;
 	private final List<String> pages;
 
 	private String face;
@@ -45,7 +45,7 @@ public class BMFFont {
 	/**
 	 * Creates a new empty bitmap font with default values.
 	 */
-	public BMFFont() {
+	public BmfFont() {
 		this.characters = new TreeMap<>();
 		this.kernings = new LinkedHashSet<>();
 		this.pages = new ArrayList<>();
@@ -70,9 +70,9 @@ public class BMFFont {
 	/**
 	 * Returns an unmodifiable map of all characters in this font, keyed by their character codes.
 	 *
-	 * @return an unmodifiable map of character codes to BMFCharacter objects
+	 * @return an unmodifiable map of character codes to {@link BmfCharacter} objects
 	 */
-	public Map<Integer, BMFCharacter> getCharacterMap() {
+	public Map<Integer, BmfCharacter> getCharacterMap() {
 		return Collections.unmodifiableMap(characters);
 	}
 
@@ -88,9 +88,9 @@ public class BMFFont {
 	/**
 	 * Returns an unmodifiable collection of all characters in this font.
 	 *
-	 * @return an unmodifiable collection of BMFCharacter objects
+	 * @return an unmodifiable collection of {@link BmfCharacter} objects
 	 */
-	public Collection<BMFCharacter> getCharacters() {
+	public Collection<BmfCharacter> getCharacters() {
 		return Collections.unmodifiableCollection(characters.values());
 	}
 
@@ -110,9 +110,9 @@ public class BMFFont {
 	 *
 	 * @param code the character code to get
 	 * 
-	 * @return the BMFCharacter object, or {@code null} if not found
+	 * @return the {@link BmfCharacter} object, or {@code null} if not found
 	 */
-	public BMFCharacter getCharacter(int code) {
+	public BmfCharacter getCharacter(int code) {
 		return characters.get(Integer.valueOf(code));
 	}
 
@@ -123,7 +123,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont addCharacter(BMFCharacter character) {
+	public BmfFont addCharacter(BmfCharacter character) {
 		characters.put(character.getId(), character);
 		return this;
 	}
@@ -135,7 +135,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont removeCharacter(int code) {
+	public BmfFont removeCharacter(int code) {
 		characters.remove(Integer.valueOf(code));
 		return this;
 	}
@@ -145,7 +145,7 @@ public class BMFFont {
 	 *
 	 * @return a reference to this object
 	 */
-	public BMFFont clearCharacters() {
+	public BmfFont clearCharacters() {
 		characters.clear();
 		return this;
 	}
@@ -155,7 +155,7 @@ public class BMFFont {
 	 *
 	 * @return an unmodifiable set of kernings
 	 */
-	public Set<BMFKerning> getKernings() {
+	public Set<BmfKerning> getKernings() {
 		return Collections.unmodifiableSet(kernings);
 	}
 
@@ -167,7 +167,7 @@ public class BMFFont {
 	 * 
 	 * @return an {@link Optional} containing the kerning
 	 */
-	public Optional<BMFKerning> getKerning(int first, int second) {
+	public Optional<BmfKerning> getKerning(int first, int second) {
 		return kernings.stream().filter(kerning -> kerning.getFirst() == first && kerning.getSecond() == second).findAny();
 	}
 
@@ -178,7 +178,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont addKerning(BMFKerning kerning) {
+	public BmfFont addKerning(BmfKerning kerning) {
 		kernings.add(kerning);
 		return this;
 	}
@@ -190,7 +190,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont reoveKerning(BMFKerning kerning) {
+	public BmfFont reoveKerning(BmfKerning kerning) {
 		kernings.remove(kerning);
 		return this;
 	}
@@ -200,7 +200,7 @@ public class BMFFont {
 	 *
 	 * @return a reference to this object
 	 */
-	public BMFFont clearKernings() {
+	public BmfFont clearKernings() {
 		kernings.clear();
 		return this;
 	}
@@ -233,7 +233,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont addPage(int id, String page) {
+	public BmfFont addPage(int id, String page) {
 		pages.add(id, page);
 		return this;
 	}
@@ -245,7 +245,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont removePage(int id) {
+	public BmfFont removePage(int id) {
 		pages.remove(id);
 		return this;
 	}
@@ -257,7 +257,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont removePage(String page) {
+	public BmfFont removePage(String page) {
 		pages.remove(page);
 		return this;
 	}
@@ -267,7 +267,7 @@ public class BMFFont {
 	 *
 	 * @return a reference to this object
 	 */
-	public BMFFont clearPages() {
+	public BmfFont clearPages() {
 		pages.clear();
 		return this;
 	}
@@ -288,7 +288,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setFace(String face) {
+	public BmfFont setFace(String face) {
 		this.face = face;
 		return this;
 	}
@@ -309,7 +309,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setCharset(String charset) {
+	public BmfFont setCharset(String charset) {
 		this.charset = charset;
 		return this;
 	}
@@ -330,7 +330,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setSize(int size) {
+	public BmfFont setSize(int size) {
 		this.size = size;
 		return this;
 	}
@@ -351,7 +351,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setScaleW(int scaleW) {
+	public BmfFont setScaleW(int scaleW) {
 		this.scaleW = scaleW;
 		return this;
 	}
@@ -372,7 +372,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setScaleH(int scaleH) {
+	public BmfFont setScaleH(int scaleH) {
 		this.scaleH = scaleH;
 		return this;
 	}
@@ -393,7 +393,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setStretchH(int stretchH) {
+	public BmfFont setStretchH(int stretchH) {
 		this.stretchH = stretchH;
 		return this;
 	}
@@ -414,7 +414,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setLineHeight(int lineHeight) {
+	public BmfFont setLineHeight(int lineHeight) {
 		this.lineHeight = lineHeight;
 		return this;
 	}
@@ -435,7 +435,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setBase(int base) {
+	public BmfFont setBase(int base) {
 		this.base = base;
 		return this;
 	}
@@ -456,7 +456,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setPadding(int[] padding) {
+	public BmfFont setPadding(int[] padding) {
 		this.padding = padding;
 		return this;
 	}
@@ -477,7 +477,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setSpacing(int[] spacing) {
+	public BmfFont setSpacing(int[] spacing) {
 		this.spacing = spacing;
 		return this;
 	}
@@ -498,7 +498,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setBold(boolean bold) {
+	public BmfFont setBold(boolean bold) {
 		this.bold = bold;
 		return this;
 	}
@@ -519,7 +519,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setItalic(boolean italic) {
+	public BmfFont setItalic(boolean italic) {
 		this.italic = italic;
 		return this;
 	}
@@ -540,7 +540,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setUnicode(boolean unicode) {
+	public BmfFont setUnicode(boolean unicode) {
 		this.unicode = unicode;
 		return this;
 	}
@@ -561,7 +561,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setSmooth(boolean smooth) {
+	public BmfFont setSmooth(boolean smooth) {
 		this.smooth = smooth;
 		return this;
 	}
@@ -582,7 +582,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setAntiAliased(boolean antiAliased) {
+	public BmfFont setAntiAliased(boolean antiAliased) {
 		this.antiAliased = antiAliased;
 		return this;
 	}
@@ -603,7 +603,7 @@ public class BMFFont {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFFont setPacked(boolean packed) {
+	public BmfFont setPacked(boolean packed) {
 		this.packed = packed;
 		return this;
 	}

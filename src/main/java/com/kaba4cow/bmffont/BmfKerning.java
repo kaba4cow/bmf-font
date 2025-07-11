@@ -4,7 +4,7 @@ package com.kaba4cow.bmffont;
  * Represents kerning information between two characters in a bitmap font. Kerning adjusts the spacing between specific pairs of
  * characters for better visual appearance.
  */
-public class BMFKerning {
+public class BmfKerning {
 
 	private final int first;
 	private final int second;
@@ -16,7 +16,7 @@ public class BMFKerning {
 	 * @param first  the code of the first character
 	 * @param second the code of the second character
 	 */
-	public BMFKerning(int first, int second) {
+	public BmfKerning(int first, int second) {
 		this.first = first;
 		this.second = second;
 		this.amount = 0;
@@ -56,14 +56,14 @@ public class BMFKerning {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFKerning setAmount(int amount) {
+	public BmfKerning setAmount(int amount) {
 		this.amount = amount;
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("BMFKerning [first=%s, second=%s, amount=%s]", first, second, amount);
+		return String.format("BmfKerning [first=%s, second=%s, amount=%s]", first, second, amount);
 	}
 
 }

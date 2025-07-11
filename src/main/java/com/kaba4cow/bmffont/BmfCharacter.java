@@ -4,7 +4,7 @@ package com.kaba4cow.bmffont;
  * Represents a character in a bitmap font. Each character contains information about its position in the texture, dimensions,
  * offsets, and other rendering properties.
  */
-public class BMFCharacter {
+public class BmfCharacter {
 
 	private final int id;
 
@@ -25,7 +25,7 @@ public class BMFCharacter {
 	 *
 	 * @param id the unique identifier of the character, typically its ASCII or Unicode value
 	 */
-	public BMFCharacter(int id) {
+	public BmfCharacter(int id) {
 		this.id = id;
 		this.x = 0;
 		this.y = 0;
@@ -63,7 +63,7 @@ public class BMFCharacter {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFCharacter setX(int x) {
+	public BmfCharacter setX(int x) {
 		this.x = x;
 		return this;
 	}
@@ -84,7 +84,7 @@ public class BMFCharacter {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFCharacter setY(int y) {
+	public BmfCharacter setY(int y) {
 		this.y = y;
 		return this;
 	}
@@ -105,7 +105,7 @@ public class BMFCharacter {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFCharacter setWidth(int width) {
+	public BmfCharacter setWidth(int width) {
 		this.width = width;
 		return this;
 	}
@@ -126,7 +126,7 @@ public class BMFCharacter {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFCharacter setHeight(int height) {
+	public BmfCharacter setHeight(int height) {
 		this.height = height;
 		return this;
 	}
@@ -147,7 +147,7 @@ public class BMFCharacter {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFCharacter setOffsetX(int offsetX) {
+	public BmfCharacter setOffsetX(int offsetX) {
 		this.offsetX = offsetX;
 		return this;
 	}
@@ -168,7 +168,7 @@ public class BMFCharacter {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFCharacter setOffsetY(int offsetY) {
+	public BmfCharacter setOffsetY(int offsetY) {
 		this.offsetY = offsetY;
 		return this;
 	}
@@ -189,7 +189,7 @@ public class BMFCharacter {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFCharacter setAdvanceX(int advanceX) {
+	public BmfCharacter setAdvanceX(int advanceX) {
 		this.advanceX = advanceX;
 		return this;
 	}
@@ -210,7 +210,7 @@ public class BMFCharacter {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFCharacter setPage(int page) {
+	public BmfCharacter setPage(int page) {
 		this.page = page;
 		return this;
 	}
@@ -231,7 +231,7 @@ public class BMFCharacter {
 	 * 
 	 * @return a reference to this object
 	 */
-	public BMFCharacter setChannel(int channel) {
+	public BmfCharacter setChannel(int channel) {
 		this.channel = channel;
 		return this;
 	}
@@ -239,7 +239,7 @@ public class BMFCharacter {
 	@Override
 	public String toString() {
 		return String.format(
-				"BMFCharacter [id=%s, x=%s, y=%s, width=%s, height=%s, offsetX=%s, offsetY=%s, advanceX=%s, page=%s, channel=%s]",
+				"BmfCharacter [id=%s, x=%s, y=%s, width=%s, height=%s, offsetX=%s, offsetY=%s, advanceX=%s, page=%s, channel=%s]",
 				id, x, y, width, height, offsetX, offsetY, advanceX, page, channel);
 	}
 
